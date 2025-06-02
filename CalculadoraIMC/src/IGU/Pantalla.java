@@ -58,7 +58,7 @@ public class Pantalla extends javax.swing.JFrame {
         jLabel3.setText("Ingrese su Peso (en kg):");
 
         alt.setBackground(new java.awt.Color(234, 234, 234));
-        alt.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
+        alt.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         alt.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         alt.setToolTipText("  ");
         alt.setMargin(new java.awt.Insets(2, 12, 2, 12));
@@ -69,7 +69,7 @@ public class Pantalla extends javax.swing.JFrame {
         });
 
         pes.setBackground(new java.awt.Color(234, 234, 234));
-        pes.setFont(new java.awt.Font("Segoe UI Semibold", 2, 14)); // NOI18N
+        pes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         pes.setMargin(new java.awt.Insets(2, 12, 2, 12));
         pes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +144,7 @@ public class Pantalla extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(113, 113, 113))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -153,10 +153,10 @@ public class Pantalla extends javax.swing.JFrame {
                             .addComponent(pes, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(alt, javax.swing.GroupLayout.Alignment.LEADING))
                         .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(calc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(82, 82, 82))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(calc, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,14 +239,25 @@ public class Pantalla extends javax.swing.JFrame {
     private void calcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcActionPerformed
         Persona per = new Persona();
         Mensaje men = new Mensaje();
-        per.setAltura(Float.parseFloat(alt.getText()));
-        per.setPeso(Float.parseFloat(pes.getText()));
-        per.setIMC();
-        imc.setText(String.format("%.2f", per.getIMC()));
-        men.setMensaje(per.getIMC());
-        cat.setText(men.getMensaje());
-        imc.setForeground(Color.BLACK);
-        cat.setForeground(Color.BLACK);        
+        try {
+            per.setAltura(Float.parseFloat(alt.getText()));
+            per.setPeso(Float.parseFloat(pes.getText()));
+            per.setIMC();
+            imc.setText(String.format("%.2f", per.getIMC()));
+            men.setMensaje(per.getIMC());
+            cat.setText(men.getMensaje());
+            imc.setForeground(Color.BLACK);
+            cat.setForeground(Color.BLACK);  
+        }
+        catch (Exception e) {
+            if (alt.getText().isBlank() || pes.getText().isBlank()) {
+                JOptionPane.showMessageDialog(null, "No se permite campos vacios",
+                "ERROR!", JOptionPane.ERROR_MESSAGE);  
+            } else {
+                JOptionPane.showMessageDialog(null, "Por favor ingrese un numero",
+                "ERROR!", JOptionPane.ERROR_MESSAGE); 
+            }
+        }      
     }//GEN-LAST:event_calcActionPerformed
 
     private void pesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesActionPerformed
