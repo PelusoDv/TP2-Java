@@ -6,6 +6,14 @@ public class Persona {
     private float peso;
     private float IMC;
 
+    public Persona() {
+    }
+    
+    public Persona(float altura, float peso) {
+        this.altura = altura;
+        this.peso = peso;
+    }
+
     public float getAltura() {
         return altura;
     }

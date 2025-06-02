@@ -237,11 +237,9 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_altActionPerformed
 
     private void calcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcActionPerformed
-        Persona per = new Persona();
         Mensaje men = new Mensaje();
         try {
-            per.setAltura(Float.parseFloat(alt.getText()));
-            per.setPeso(Float.parseFloat(pes.getText()));
+            Persona per = new Persona(Float.parseFloat(alt.getText()), Float.parseFloat(pes.getText()));
             per.setIMC();
             imc.setText(String.format("%.2f", per.getIMC()));
             men.setMensaje(per.getIMC());
