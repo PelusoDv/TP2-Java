@@ -2,17 +2,25 @@
 package IGU;
 
 import Business.Persona;
-import java.awt.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Pantalla extends javax.swing.JFrame {
-
     List<Persona> personas = new ArrayList<>();
-    
+
     public Pantalla() {
         initComponents();
+        personas.add(new Persona());
     }
-
+    
+    private void setDatos(int ind) {
+        nombre.setText(personas.get(ind).getNombre());
+        apellido.setText(personas.get(ind).getApellido());
+        dni.setText(String.valueOf(personas.get(ind).getDni()));
+        direc.setText(personas.get(ind).getDirec());
+        telef.setText(String.valueOf(personas.get(ind).getTelef()));
+        naci.setText(personas.get(ind).getNac());
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -160,36 +168,37 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(5, 5, 5)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addGap(3, 3, 3)
                             .addComponent(jLabel5))
-                        .addComponent(nombre)
-                        .addComponent(direc))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nombre)
+                            .addComponent(direc)))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(apellido)
+                            .addComponent(telef))
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addGap(3, 3, 3)
-                            .addComponent(jLabel3))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(3, 3, 3)
-                            .addComponent(jLabel6))
-                        .addComponent(apellido)
-                        .addComponent(telef))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel6))))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(dni)
+                            .addComponent(naci))
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addGap(3, 3, 3)
-                            .addComponent(jLabel4))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(3, 3, 3)
-                            .addComponent(jLabel7))
-                        .addComponent(dni)
-                        .addComponent(naci))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel7))))
                     .addContainerGap()))
         );
 
@@ -261,7 +270,7 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(indice, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(indice, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -271,13 +280,6 @@ public class Pantalla extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jSeparator1)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,6 +292,14 @@ public class Pantalla extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,7 +344,10 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_naciActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        // TODO add your handling code here:
+        String index = indice.getText();
+        int indi = Integer.parseInt(index);
+        personas.add(indi, new Persona(nombre.getText(), apellido.getText(), Integer.parseInt(dni.getText()),
+        direc.getText(), Integer.parseInt(telef.getText()), naci.getText()));
     }//GEN-LAST:event_guardarActionPerformed
 
     private void indiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indiceActionPerformed
@@ -346,9 +359,11 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_dniActionPerformed
 
     private void andaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andaActionPerformed
+        personas.add(new Persona());
         String index = indice.getText();
         int indi = Integer.parseInt(index);
         indi = indi+1;
+        setDatos(indi);
         index = String.valueOf(indi);
         indice.setText(index);
     }//GEN-LAST:event_andaActionPerformed
@@ -358,6 +373,7 @@ public class Pantalla extends javax.swing.JFrame {
         int indi = Integer.parseInt(index);
         if (indi > 0) {
             indi = indi-1;
+            setDatos(indi);
             index = String.valueOf(indi);
             indice.setText(index);
         }
