@@ -4,6 +4,7 @@ package IGU;
 import Business.Persona;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class Pantalla extends javax.swing.JFrame {
     List<Persona> personas = new ArrayList<>();
@@ -344,10 +345,22 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_naciActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        
         String index = indice.getText();
         int indi = Integer.parseInt(index);
-        personas.add(indi, new Persona(nombre.getText(), apellido.getText(), Integer.parseInt(dni.getText()),
-        direc.getText(), Integer.parseInt(telef.getText()), naci.getText()));
+        try {
+            personas.add(indi, new Persona(nombre.getText(), apellido.getText(), Integer.parseInt(dni.getText()),
+            direc.getText(), Integer.parseInt(telef.getText()), naci.getText()));
+        }
+        catch (Exception e) {
+            if ((dni.getText().isBlank() || telef.getText().isBlank())) {
+                JOptionPane.showMessageDialog(null, "No guardar campos vacios",
+                        "ERROR!", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "DNI y Telefono deben ser numeros",
+                        "ERROR!", JOptionPane.ERROR_MESSAGE);
+            }
+        }   
     }//GEN-LAST:event_guardarActionPerformed
 
     private void indiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indiceActionPerformed
