@@ -2,27 +2,28 @@
 package IGU;
 
 import Business.Persona;
-import java.util.ArrayList;
-import java.util.List;
+import Business.Controlador;
 import javax.swing.JOptionPane;
 
 public class Pantalla extends javax.swing.JFrame {
-    List<Persona> personas = new ArrayList<>();
+    Controlador agenda = new Controlador();
 
     public Pantalla() {
         initComponents();
-        personas.add(new Persona());
+        setDatos();
     }
     
-    private void setDatos(int ind) {
-        nombre.setText(personas.get(ind).getNombre());
-        apellido.setText(personas.get(ind).getApellido());
-        dni.setText(String.valueOf(personas.get(ind).getDni()));
-        direc.setText(personas.get(ind).getDirec());
-        telef.setText(String.valueOf(personas.get(ind).getTelef()));
-        naci.setText(personas.get(ind).getNac());
+    private void setDatos() {
+        Persona p = agenda.getPersona();
+        nombre.setText(p.getNombre());
+        apellido.setText(p.getApellido());
+        dni.setText(p.getDni());
+        direc.setText(p.getDireccion());
+        telef.setText(p.getTelefono());
+        naci.setText(p.getFechaNacimiento());
+        indice.setText(String.valueOf(agenda.getIndice()));
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -345,22 +346,19 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_naciActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        
-        String index = indice.getText();
-        int indi = Integer.parseInt(index);
         try {
-            personas.add(indi, new Persona(nombre.getText(), apellido.getText(), Integer.parseInt(dni.getText()),
-            direc.getText(), Integer.parseInt(telef.getText()), naci.getText()));
+            agenda.guardarPersona(
+                nombre.getText(),
+                apellido.getText(),
+                dni.getText(),
+                direc.getText(),
+                telef.getText(),
+                naci.getText()
+            );
+            JOptionPane.showMessageDialog(this, "Guardado correctamente");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR!", JOptionPane.ERROR_MESSAGE);
         }
-        catch (Exception e) {
-            if ((dni.getText().isBlank() || telef.getText().isBlank())) {
-                JOptionPane.showMessageDialog(null, "No guardar campos vacios",
-                        "ERROR!", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "DNI y Telefono deben ser numeros",
-                        "ERROR!", JOptionPane.ERROR_MESSAGE);
-            }
-        }   
     }//GEN-LAST:event_guardarActionPerformed
 
     private void indiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indiceActionPerformed
@@ -372,24 +370,13 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_dniActionPerformed
 
     private void andaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andaActionPerformed
-        personas.add(new Persona());
-        String index = indice.getText();
-        int indi = Integer.parseInt(index);
-        indi = indi+1;
-        setDatos(indi);
-        index = String.valueOf(indi);
-        indice.setText(index);
+        agenda.avanzar();
+        setDatos();
     }//GEN-LAST:event_andaActionPerformed
 
     private void volveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volveActionPerformed
-        String index = indice.getText();
-        int indi = Integer.parseInt(index);
-        if (indi > 0) {
-            indi = indi-1;
-            setDatos(indi);
-            index = String.valueOf(indi);
-            indice.setText(index);
-        }
+        agenda.retroceder();
+        setDatos();
     }//GEN-LAST:event_volveActionPerformed
 
 
