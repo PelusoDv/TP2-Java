@@ -16,11 +16,29 @@ public class Pantalla extends javax.swing.JFrame {
     private void setDatos() {
         Persona p = agenda.getPersona();
         nombre.setText(p.getNombre());
+        if (p.getNombre() == null) {
+            nombre.setText("");
+        }
         apellido.setText(p.getApellido());
+        if (p.getApellido() == null) {
+            apellido.setText("");
+        }
         dni.setText(p.getDni());
+        if (p.getDni() == null) {
+            dni.setText("");
+        }
         direc.setText(p.getDireccion());
+        if (p.getDireccion()== null) {
+            direc.setText("");
+        }
         telef.setText(p.getTelefono());
+        if (p.getTelefono() == null) {
+            telef.setText("");
+        }
         naci.setText(p.getFechaNacimiento());
+        if (p.getFechaNacimiento()== null) {
+            naci.setText("");
+        } 
         indice.setText(String.valueOf(agenda.getIndice()));
     }
     
@@ -52,6 +70,7 @@ public class Pantalla extends javax.swing.JFrame {
         anda = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         indice = new javax.swing.JTextField();
+        guardarTodo = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Agenda"); // NOI18N
@@ -238,6 +257,13 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
+        guardarTodo.setText("Guardar Todo");
+        guardarTodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarTodoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -254,9 +280,15 @@ public class Pantalla extends javax.swing.JFrame {
                         .addComponent(volve, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(guardar)))
-                .addGap(18, 18, 18)
-                .addComponent(anda, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(anda, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(215, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(guardarTodo)
+                        .addContainerGap())))
         );
 
         jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {anda, guardar, volve});
@@ -272,8 +304,9 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(indice, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
+                    .addComponent(indice, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guardarTodo))
+                .addGap(13, 13, 13))
         );
 
         jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {anda, guardar, volve});
@@ -310,7 +343,7 @@ public class Pantalla extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -379,6 +412,15 @@ public class Pantalla extends javax.swing.JFrame {
         setDatos();
     }//GEN-LAST:event_volveActionPerformed
 
+    private void guardarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarTodoActionPerformed
+        try {
+            agenda.guardarTodo();
+            JOptionPane.showMessageDialog(this, "Todos los contactos fueron guardados.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_guardarTodoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton anda;
@@ -386,6 +428,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JTextField direc;
     private javax.swing.JTextField dni;
     private javax.swing.JButton guardar;
+    private javax.swing.JToggleButton guardarTodo;
     private javax.swing.JTextField indice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

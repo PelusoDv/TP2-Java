@@ -1,15 +1,29 @@
 
 package Business;
 
+import Persistencia.ArchivoPersona;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controlador {
-    private List<Persona> personas = new ArrayList<>();
+    private List<Persona> personas;
     private int indice = 0;
+    private ArchivoPersona archivo = new ArchivoPersona();
     
     public Controlador() {
-        personas.add(new Persona());
+        try {
+            personas = archivo.leerPersonas();
+        } catch (Exception e) {
+            personas = new ArrayList<>();
+        }
+
+        if (personas.isEmpty()) {
+            personas.add(new Persona());
+        }
+    }
+    
+    public void guardarTodo() throws Exception {
+        archivo.guardarPersonas(personas);
     }
 
     public Persona getPersona() {
