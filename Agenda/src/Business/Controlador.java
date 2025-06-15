@@ -53,8 +53,8 @@ public class Controlador {
         }
 
         try {
-            Long.parseLong(dni);
-            Long.parseLong(telefono);
+            Long.valueOf(dni);
+            Long.valueOf(telefono);
         } catch (NumberFormatException e) {
             throw new Exception("DNI y Teléfono deben ser números");
         }

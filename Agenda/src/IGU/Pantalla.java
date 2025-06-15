@@ -15,30 +15,37 @@ public class Pantalla extends javax.swing.JFrame {
     
     private void setDatos() {
         Persona p = agenda.getPersona();
-        nombre.setText(p.getNombre());
-        if (p.getNombre() == null) {
+        
+        if (p.getNombre() != null && !p.getNombre().equals("null")) {
+            nombre.setText(p.getNombre());
+        } else {
             nombre.setText("");
         }
-        apellido.setText(p.getApellido());
-        if (p.getApellido() == null) {
+        if (p.getApellido() != null && !p.getApellido().equals("null")) {
+            apellido.setText(p.getApellido());
+        } else {
             apellido.setText("");
         }
-        dni.setText(p.getDni());
-        if (p.getDni() == null) {
+        if (p.getDni() != null && !p.getDni().equals("null"))
+            dni.setText(p.getDni());
+        else {
             dni.setText("");
         }
-        direc.setText(p.getDireccion());
-        if (p.getDireccion()== null) {
-            direc.setText("");
+        if (p.getDireccion() != null && !p.getDireccion().equals("null")) {
+            direc.setText(p.getDireccion());
+        } else {
+            direc.setText(""); 
         }
-        telef.setText(p.getTelefono());
-        if (p.getTelefono() == null) {
+        if (p.getTelefono() != null && !p.getTelefono().equals("null")) {
+            telef.setText(p.getTelefono());
+        } else { 
             telef.setText("");
-        }
-        naci.setText(p.getFechaNacimiento());
-        if (p.getFechaNacimiento()== null) {
-            naci.setText("");
-        } 
+        }    
+        if (p.getFechaNacimiento() != null && !p.getFechaNacimiento().equals("null")) {
+            naci.setText(p.getFechaNacimiento());
+        } else {
+            naci.setText("");   
+        }         
         indice.setText(String.valueOf(agenda.getIndice()));
     }
     
